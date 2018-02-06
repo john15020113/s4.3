@@ -6,20 +6,19 @@ C12832 lcd(D11, D13, D12, D7, D10);
 
 int main()
 {
-    int j=0;
-    lcd.cls();
-    lcd.locate(0,0);
-    lcd.printf("mbed application shield!");
-    lcd.locate(0,10);
-    lcd.printf("char %dx%d : %dx%d pixels",
-               lcd.columns(), lcd.rows(),
-               lcd.width(), lcd.height() );
-    lcd.circle(100, 20, 10, 1);
-
     while(true) {
-        lcd.locate(0,20);
-        lcd.printf("Counting : %4d",j);
-        j++;
-        wait(1.0);
+        lcd.cls();
+        for(int i = 0; i<50; i++) {
+          lcd.locate(0,20);
+          int randY = rand()%10;
+          int randX = rand()%50;
+          lcd.circle(10+randX,10+randY,10,1);
+          lcd.locate(70,10);
+          lcd.printf("Circles: %d", i);
+          lcd.locate(70,20);
+          lcd.printf("X: %d Y: %d", 10+randX, 10+randY);
+          wait(.3);
+        }
+        wait(1);
     }
 }
